@@ -1,0 +1,1 @@
+export const Loader = () => <div className="grid items-center min-h-28 w-full justify-center">⏳</div>;
