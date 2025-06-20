@@ -23,14 +23,16 @@ import {
 } from "@/components/ui/table";
 import { useEffect, useMemo, useState } from "react";
 import { DataTablePagination } from "./pagination";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Loader } from "@/components/globalfiles/loader";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogTrigger,
 } from "@/components/ui/dialog";
-import AddBlogModal  from "./add-blog";
+import EditBlogModal from "./edit-blog";
+import DeleteBlogModal from "./delete-blog";
+import { BlogType } from "../../type/blogType";
+import { createColumns } from "./column";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -48,17 +50,24 @@ interface DataTableProps<TData, TValue> {
   };
   pageCount: number | undefined;
   title: string;
+  onRefresh?: () => void; // Callback to refresh data after CRUD operations
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   loading,
+  onRefresh,
 }: DataTableProps<TData, TValue>) {
-  // const navigate = useNavigate();
+
+  console.log("DataTable received data:", data);
+  console.log("DataTable data length:", data?.length);
+  const navigate = useNavigate();
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [selectedBlog, setSelectedBlog] = useState<BlogType | null>(null);
   const [pages, setPageIndex] = useState<string>("25");
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
     pageIndex: 1,
@@ -80,9 +89,31 @@ export function DataTable<TData, TValue>({
     });
   }, [pages]);
 
+  // CRUD Handlers
+  const handleDelete = (blog: BlogType) => {
+    setSelectedBlog(blog);
+    setIsDeleteOpen(true);
+  };
+
+  const handleSuccess = () => {
+    if (onRefresh) {
+      onRefresh();
+    }
+  };
+
+  // Create dynamic columns with CRUD handlers
+  const dynamicColumns = useMemo(() => {
+    return createColumns({
+      onDelete: handleDelete,
+    });
+  }, []);
+
+  // Use provided columns or dynamic columns
+  const tableColumns = columns.length > 0 ? columns : dynamicColumns;
+
   const table = useReactTable({
     data,
-    columns,
+    columns: tableColumns as ColumnDef<TData, TValue>[],
     onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     onSortingChange: setSorting,
@@ -116,14 +147,12 @@ export function DataTable<TData, TValue>({
           </div>
         </div>
         <div className="flex flex-row justify-between gap-5">
-          <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogTrigger asChild>
-              <Button className="bg-[#ee6620] flex items-center gap-2 text-white p-2 rounded-md hover:bg-[#d85a1c]">
-                Add Blog
-              </Button>
-            </DialogTrigger>
-            <AddBlogModal setIsOpen={setIsOpen} />
-          </Dialog>
+          <Button
+            onClick={() => navigate('/blog/add')}
+            className="bg-[#ee6620] flex items-center gap-2 text-white p-2 rounded-md hover:bg-[#d85a1c]"
+          >
+            Add Blog
+          </Button>
         </div>
       </div>
       <div className="rounded-md border">
@@ -191,6 +220,28 @@ export function DataTable<TData, TValue>({
       </div>
 
       <DataTablePagination table={table} />
+
+      {/* Edit Modal */}
+      {selectedBlog && (
+        <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
+          <EditBlogModal
+            blog={selectedBlog}
+            setIsOpen={setIsEditOpen}
+            onSuccess={handleSuccess}
+          />
+        </Dialog>
+      )}
+
+      {/* Delete Modal */}
+      {selectedBlog && (
+        <Dialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
+          <DeleteBlogModal
+            blog={selectedBlog}
+            setIsOpen={setIsDeleteOpen}
+            onSuccess={handleSuccess}
+          />
+        </Dialog>
+      )}
     </div>
   );
 }

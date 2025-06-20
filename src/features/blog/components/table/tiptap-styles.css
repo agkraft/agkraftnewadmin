@@ -1,0 +1,772 @@
+/* Professional Tiptap Editor Styles */
+.ProseMirror {
+  outline: none;
+  padding: 1rem;
+  min-height: 200px;
+  border: none;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  overflow-x: hidden;
+  max-width: 100%;
+  color: #374151;
+}
+
+/* Focus styles */
+.ProseMirror.has-focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.ProseMirror p {
+  margin: 0.5rem 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.ProseMirror h1 {
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin: 1rem 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem 0 0.5rem 0;
+  line-height: 1.3;
+}
+
+.ProseMirror h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 1rem 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+.ProseMirror ul, .ProseMirror ol {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.ProseMirror li {
+  margin: 0.25rem 0;
+}
+
+.ProseMirror blockquote {
+  border-left: 4px solid #e5e7eb;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: #6b7280;
+}
+
+.ProseMirror code {
+  background-color: #f3f4f6;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+}
+
+.ProseMirror pre {
+  background-color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.ProseMirror pre code {
+  background: none;
+  padding: 0;
+}
+
+.ProseMirror img {
+  max-width: 200px;
+  max-height: 150px;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.ProseMirror img:hover {
+  border-color: #3b82f6;
+  transform: scale(1.02);
+}
+
+.ProseMirror a {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+.ProseMirror a:hover {
+  color: #1d4ed8;
+}
+
+/* Focus styles */
+.ProseMirror:focus {
+  outline: none;
+}
+
+/* Placeholder styles */
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #9ca3af;
+  pointer-events: none;
+  height: 0;
+}
+
+/* Selection styles */
+.ProseMirror ::selection {
+  background-color: #dbeafe;
+}
+
+/* Toolbar button styles */
+.tiptap-toolbar button {
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.tiptap-toolbar button:hover {
+  background-color: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.tiptap-toolbar button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.tiptap-toolbar button.is-active {
+  background-color: #dbeafe;
+  color: #1e40af;
+  border-color: #93c5fd;
+}
+
+/* Table styles */
+.ProseMirror table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  overflow: hidden;
+  table-layout: fixed;
+  width: 100%;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+
+.ProseMirror table td,
+.ProseMirror table th {
+  border: 1px solid #e5e7eb;
+  box-sizing: border-box;
+  min-width: 1em;
+  padding: 0.5rem;
+  position: relative;
+  vertical-align: top;
+}
+
+.ProseMirror table th {
+  background-color: #f9fafb;
+  font-weight: bold;
+  text-align: left;
+}
+
+.ProseMirror table .selectedCell:after {
+  background: rgba(59, 130, 246, 0.1);
+  content: "";
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.ProseMirror table .column-resize-handle {
+  background-color: #3b82f6;
+  bottom: -2px;
+  position: absolute;
+  right: -2px;
+  pointer-events: none;
+  top: 0;
+  width: 4px;
+}
+
+.ProseMirror table p {
+  margin: 0;
+}
+
+/* Multiple images in rows */
+.ProseMirror .image-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.ProseMirror .image-row img {
+  flex: 1;
+  min-width: 150px;
+  max-width: 200px;
+}
+
+/* Professional Enhancement Styles */
+
+/* Highlight styles */
+.ProseMirror mark {
+  background-color: #fef08a;
+  border-radius: 0.125rem;
+  padding: 0.125rem 0.25rem;
+  box-decoration-break: clone;
+}
+
+/* Enhanced code block styles */
+.ProseMirror pre {
+  background: #1f2937;
+  color: #f9fafb;
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+  border: 1px solid #374151;
+  position: relative;
+}
+
+.ProseMirror pre::before {
+  content: 'Code';
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ProseMirror pre code {
+  color: inherit;
+  padding: 0;
+  background: none;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Enhanced inline code */
+.ProseMirror code {
+  background-color: #f3f4f6;
+  color: #ef4444;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace;
+  font-size: 0.875em;
+  border: 1px solid #e5e7eb;
+}
+
+/* Enhanced blockquote styles */
+.ProseMirror blockquote {
+  border-left: 4px solid #3b82f6;
+  margin: 1.5rem 0;
+  padding-left: 1rem;
+  font-style: italic;
+  color: #6b7280;
+  background-color: #f8fafc;
+  padding: 1rem;
+  border-radius: 0.375rem;
+  position: relative;
+}
+
+.ProseMirror blockquote::before {
+  content: '"';
+  font-size: 3rem;
+  color: #3b82f6;
+  position: absolute;
+  top: -0.5rem;
+  left: 0.5rem;
+  opacity: 0.3;
+}
+
+/* Regular list styles - Force visibility with dark colors */
+.ProseMirror ul:not([data-type="taskList"]) {
+  list-style-type: disc !important;
+  margin: 1rem 0 !important;
+  padding-left: 1.5rem !important;
+  display: block !important;
+  color: #1f2937 !important;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal !important;
+  margin: 1rem 0 !important;
+  padding-left: 1.5rem !important;
+  display: block !important;
+  color: #1f2937 !important;
+}
+
+.ProseMirror li {
+  margin: 0.25rem 0 !important;
+  line-height: 1.6 !important;
+  display: list-item !important;
+  list-style-position: outside !important;
+  color: #1f2937 !important;
+}
+
+/* Nested list styles with dark colors */
+.ProseMirror ul:not([data-type="taskList"]) ul:not([data-type="taskList"]) {
+  list-style-type: circle !important;
+  margin: 0.5rem 0 !important;
+  color: #1f2937 !important;
+}
+
+.ProseMirror ul:not([data-type="taskList"]) ul:not([data-type="taskList"]) ul:not([data-type="taskList"]) {
+  list-style-type: square !important;
+  color: #1f2937 !important;
+}
+
+.ProseMirror ol ol {
+  list-style-type: lower-alpha !important;
+  margin: 0.5rem 0 !important;
+  color: #1f2937 !important;
+}
+
+.ProseMirror ol ol ol {
+  list-style-type: lower-roman !important;
+  color: #1f2937 !important;
+}
+
+/* Ensure list items have proper spacing and visibility */
+.ProseMirror ul:not([data-type="taskList"]) li,
+.ProseMirror ol li {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  text-indent: 0 !important;
+}
+
+/* Override any conflicting styles */
+.ProseMirror ul:not([data-type="taskList"])::before,
+.ProseMirror ol::before {
+  display: none !important;
+}
+
+/* Force list markers to be visible */
+.ProseMirror ul:not([data-type="taskList"]) li::marker,
+.ProseMirror ol li::marker {
+  content: inherit !important;
+  display: list-item !important;
+}
+
+/* Additional fallback for bullet points - Dark and visible */
+.ProseMirror ul:not([data-type="taskList"]) li::before {
+  content: "●" !important;
+  color: #000000 !important;
+  font-weight: bold !important;
+  display: inline-block !important;
+  width: 1em !important;
+  margin-left: -1em !important;
+  font-size: 1.2em !important;
+}
+
+/* Additional fallback for numbered lists - Dark and visible */
+.ProseMirror ol li {
+  counter-increment: list-item !important;
+}
+
+.ProseMirror ol li::before {
+  content: counter(list-item) "." !important;
+  color: #000000 !important;
+  font-weight: bold !important;
+  display: inline-block !important;
+  width: 1.5em !important;
+  margin-left: -1.5em !important;
+  font-size: 1em !important;
+}
+
+/* Reset counter for ordered lists */
+.ProseMirror ol {
+  counter-reset: list-item !important;
+}
+
+/* Specific styles for Tiptap list classes - Dark and visible */
+.ProseMirror .tiptap-bullet-list {
+  list-style-type: disc !important;
+  margin: 1rem 0 !important;
+  padding-left: 1.5rem !important;
+  color: #000000 !important;
+}
+
+.ProseMirror .tiptap-ordered-list {
+  list-style-type: decimal !important;
+  margin: 1rem 0 !important;
+  padding-left: 1.5rem !important;
+  color: #000000 !important;
+}
+
+.ProseMirror .tiptap-list-item {
+  display: list-item !important;
+  margin: 0.25rem 0 !important;
+  line-height: 1.6 !important;
+  color: #000000 !important;
+}
+
+/* Force list markers to be black and visible */
+.ProseMirror ul:not([data-type="taskList"]) li::marker {
+  color: #000000 !important;
+  font-size: 1.2em !important;
+}
+
+.ProseMirror ol li::marker {
+  color: #000000 !important;
+  font-weight: bold !important;
+}
+
+/* Override any inherited white colors */
+.ProseMirror ul:not([data-type="taskList"]),
+.ProseMirror ol,
+.ProseMirror ul:not([data-type="taskList"]) li,
+.ProseMirror ol li {
+  color: #1f2937 !important;
+}
+
+/* Ensure text content in lists is dark */
+.ProseMirror ul:not([data-type="taskList"]) li p,
+.ProseMirror ol li p {
+  color: #1f2937 !important;
+  margin: 0 !important;
+}
+
+/* MAIN APPROACH - Force bullets and numbers to show */
+.ProseMirror ul:not([data-type="taskList"]) {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.ProseMirror ul:not([data-type="taskList"]) li {
+  position: relative !important;
+  padding-left: 2rem !important;
+  margin: 0.5rem 0 !important;
+  display: block !important;
+}
+
+.ProseMirror ul:not([data-type="taskList"]) li::before {
+  content: "•" !important;
+  position: absolute !important;
+  left: 0.5rem !important;
+  top: 0 !important;
+  color: #000000 !important;
+  font-weight: bold !important;
+  font-size: 1.5rem !important;
+  line-height: 1.6 !important;
+}
+
+/* MAIN APPROACH - Force numbers to show */
+.ProseMirror ol {
+  list-style: none !important;
+  counter-reset: list-counter !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.ProseMirror ol li {
+  position: relative !important;
+  padding-left: 2.5rem !important;
+  margin: 0.5rem 0 !important;
+  display: block !important;
+  counter-increment: list-counter !important;
+}
+
+.ProseMirror ol li::before {
+  content: counter(list-counter) "." !important;
+  position: absolute !important;
+  left: 0.5rem !important;
+  top: 0 !important;
+  color: #000000 !important;
+  font-weight: bold !important;
+  font-size: 1.2rem !important;
+  line-height: 1.6 !important;
+}
+
+/* Clean professional list styling */
+.ProseMirror ul:not([data-type="taskList"]) {
+  margin: 1rem 0 !important;
+  padding: 0.5rem 0 !important;
+}
+
+.ProseMirror ol {
+  margin: 1rem 0 !important;
+  padding: 0.5rem 0 !important;
+}
+
+/* Ensure bullets and numbers are always visible */
+.ProseMirror ul:not([data-type="taskList"]) li::before {
+  content: "•" !important;
+  color: #000000 !important;
+  font-size: 1.5rem !important;
+  font-weight: bold !important;
+  z-index: 10 !important;
+}
+
+.ProseMirror ol li::before {
+  color: #000000 !important;
+  font-size: 1.2rem !important;
+  font-weight: bold !important;
+  z-index: 10 !important;
+}
+
+/* Nested bullet lists */
+.ProseMirror ul:not([data-type="taskList"]) ul:not([data-type="taskList"]) li::before {
+  content: "◦" !important;
+  font-size: 1.3rem !important;
+}
+
+.ProseMirror ul:not([data-type="taskList"]) ul:not([data-type="taskList"]) ul:not([data-type="taskList"]) li::before {
+  content: "▪" !important;
+  font-size: 1.1rem !important;
+}
+
+/* Nested numbered lists */
+.ProseMirror ol ol {
+  counter-reset: list-counter-2 !important;
+}
+
+.ProseMirror ol ol li {
+  counter-increment: list-counter-2 !important;
+}
+
+.ProseMirror ol ol li::before {
+  content: counter(list-counter-2, lower-alpha) "." !important;
+}
+
+.ProseMirror ol ol ol {
+  counter-reset: list-counter-3 !important;
+}
+
+.ProseMirror ol ol ol li {
+  counter-increment: list-counter-3 !important;
+}
+
+.ProseMirror ol ol ol li::before {
+  content: counter(list-counter-3, lower-roman) "." !important;
+}
+
+/* Sticky Toolbar Styles */
+.tiptap-toolbar {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e5e7eb !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.tiptap-toolbar:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Ensure toolbar stays within modal bounds */
+.tiptap-toolbar.sticky {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 40 !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Add padding to editor content to account for sticky toolbar */
+.ProseMirror {
+  padding-top: 1rem !important;
+}
+
+/* Smooth scrolling for better UX */
+.tiptap-editor-container {
+  scroll-behavior: smooth;
+}
+
+/* Toolbar button hover effects */
+.tiptap-toolbar button:hover {
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+/* Task list styles */
+.ProseMirror ul[data-type="taskList"] {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.ProseMirror ul[data-type="taskList"] li {
+  display: flex;
+  align-items: flex-start;
+  margin: 0.5rem 0;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease;
+}
+
+.ProseMirror ul[data-type="taskList"] li:hover {
+  background-color: #f9fafb;
+}
+
+.ProseMirror ul[data-type="taskList"] li > label {
+  flex: 0 0 auto;
+  margin-right: 0.5rem;
+  user-select: none;
+}
+
+.ProseMirror ul[data-type="taskList"] li > div {
+  flex: 1 1 auto;
+}
+
+.ProseMirror ul[data-type="taskList"] input[type="checkbox"] {
+  cursor: pointer;
+  margin: 0;
+  width: 1rem;
+  height: 1rem;
+  accent-color: #3b82f6;
+}
+
+/* Horizontal rule */
+.ProseMirror hr {
+  border: none;
+  border-top: 2px solid #e5e7eb;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.ProseMirror hr::after {
+  content: '✦';
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 0 0.5rem;
+  color: #9ca3af;
+}
+
+/* Subscript and superscript */
+.ProseMirror sub,
+.ProseMirror sup {
+  font-size: 0.75em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+.ProseMirror sup {
+  top: -0.5em;
+}
+
+.ProseMirror sub {
+  bottom: -0.25em;
+}
+
+/* Underline styles */
+.ProseMirror u {
+  text-decoration: underline;
+  text-decoration-color: #3b82f6;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+
+/* Text alignment classes */
+.ProseMirror .has-text-align-left {
+  text-align: left;
+}
+
+.ProseMirror .has-text-align-center {
+  text-align: center;
+}
+
+.ProseMirror .has-text-align-right {
+  text-align: right;
+}
+
+.ProseMirror .has-text-align-justify {
+  text-align: justify;
+}
+
+/* Enhanced table styles */
+.ProseMirror table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  margin: 1rem 0;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.ProseMirror table td,
+.ProseMirror table th {
+  min-width: 1em;
+  border: 1px solid #e5e7eb;
+  padding: 12px 16px;
+  vertical-align: top;
+  box-sizing: border-box;
+  position: relative;
+  background-color: white;
+}
+
+.ProseMirror table th {
+  font-weight: 600;
+  text-align: left;
+  background-color: #f9fafb;
+  color: #374151;
+}
+
+.ProseMirror table .selectedCell:after {
+  z-index: 2;
+  position: absolute;
+  content: "";
+  left: 0; right: 0; top: 0; bottom: 0;
+  background: rgba(59, 130, 246, 0.1);
+  pointer-events: none;
+}
+
+.ProseMirror table .column-resize-handle {
+  position: absolute;
+  right: -2px; top: 0; bottom: 0;
+  width: 4px;
+  z-index: 20;
+  background-color: #3b82f6;
+  pointer-events: none;
+}
+
+.ProseMirror table p {
+  margin: 0;
+}
+
+.ProseMirror .tableWrapper {
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.ProseMirror .resize-cursor {
+  cursor: ew-resize;
+  cursor: col-resize;
+}
+
+/* Character count styles */
+.character-count {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.character-count.warning {
+  color: #f59e0b;
+}
+
+.character-count.error {
+  color: #ef4444;
+}

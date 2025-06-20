@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom"
-import VenueFile from "./components/servicefoldermain"
+import ServiceFolderMain from "./components/servicefoldermain"
 
 
 const ServicesRoutes = () => {
   return (
    <Routes>
-    <Route path="/" element={<VenueFile/>} />    
+    <Route path="/" element={<ServiceFolderMain/>} />
    </Routes>
   )
 }

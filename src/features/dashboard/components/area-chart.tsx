@@ -19,14 +19,14 @@ const chartData = [
   { month: "January", desktop: 186 },
   { month: "February", desktop: 305 },
   { month: "March", desktop: 237 },
-  { month: "April", desktop: 73 },
+  { month: "April", desktop: 173 },
   { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
+  { month: "June", desktop: 314 },
 ]
 
 const chartConfig = {
   desktop: {
-    label: "Desktop",
+    label: "Growth",
     color: "hsl(var(--chart-1))",
   },
 } satisfies ChartConfig
@@ -35,9 +35,9 @@ export function AreaChartComponent() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Area Chart</CardTitle>
+        <CardTitle>Monthly Growth</CardTitle>
         <CardDescription>
-          Showing total visitors for the last 6 months
+          Overall platform growth trends over the last 6 months
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -76,10 +76,10 @@ export function AreaChartComponent() {
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
             <div className="flex items-center gap-2 font-medium leading-none">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+              Trending up by 12.3% this month <TrendingUp className="h-4 w-4" />
             </div>
             <div className="flex items-center gap-2 leading-none text-muted-foreground">
-              January - June 2024
+              Platform growth metrics - January to June 2024
             </div>
           </div>
         </div>

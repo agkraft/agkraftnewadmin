@@ -4,28 +4,54 @@ import DashboardPage from "@/features/layout/dashboard-layout";
 import BlogPageRoutes from "@/features/blog/routes/index";
 import Form from "@/features/userform/index";
 // import CareerFormPage from "@/features/careerform/index";
-import VenuesRoutes from "@/features/venues";
-import GallaryRoutes from "@/features/gallary";
+import ProjectsRoutes from "@/features/projects";
 import ServicesRoutes from "@/features/servicesfolder";
 import HomeHeroRoutes from "@/features/homeherosection";
 import RateReviewRoutes from "@/features/RaviewRate";
+import TeamRoutes from "@/features/teams";
+import ContactRoutes from "@/features/contact/routes";
+import { LoginPage } from "@/features/auth/pages/LoginPage";
+import { PrivateRoute, PublicRoute } from "@/components/auth";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route element={<DashboardPage />}>
-      {/* Default Route */}
-      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+    <>
+      {/* Public Routes - Only accessible when NOT logged in */}
+      <Route
+        path="/login"
+        element={
+          <PublicRoute>
+            <LoginPage />
+          </PublicRoute>
+        }
+      />
 
-      {/* Dashboard Route */}
-      <Route path="/dashboard" element={<AdminDashboard />} />
-      <Route path="/form/*" element={<Form />} />
-      <Route path="/blog/*" element={<BlogPageRoutes />} />
-      {/* <Route path="/careerform/*" element={<CareerFormPage />} /> */}
-      <Route path="/venues/*" element={<VenuesRoutes />} /> 
-      <Route path="/gallary/*" element={<GallaryRoutes />} /> 
-      <Route path="/services/*" element={<ServicesRoutes />} />
-      <Route path="/herosection/*" element={<HomeHeroRoutes />} /> 
-      <Route path="/rate-review/*" element={<RateReviewRoutes />} />
-    </Route>
+      {/* Private Routes - Only accessible when logged in */}
+      <Route
+        element={
+          <PrivateRoute>
+            <DashboardPage />
+          </PrivateRoute>
+        }
+      >
+        {/* Default Route */}
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+
+        {/* Dashboard Route */}
+        <Route path="/dashboard" element={<AdminDashboard />} />
+        <Route path="/form/*" element={<Form />} />
+        <Route path="/blog/*" element={<BlogPageRoutes />} />
+        {/* <Route path="/careerform/*" element={<CareerFormPage />} /> */}
+        <Route path="/projects/*" element={<ProjectsRoutes />} />
+        <Route path="/teams/*" element={<TeamRoutes />} />
+        <Route path="/services/*" element={<ServicesRoutes />} />
+        <Route path="/herosection/*" element={<HomeHeroRoutes />} />
+        <Route path="/rate-review/*" element={<RateReviewRoutes />} />
+        <Route path="/contact/*" element={<ContactRoutes />} />
+      </Route>
+
+      {/* Catch all route - redirect to login if not authenticated, dashboard if authenticated */}
+      <Route path="*" element={<Navigate to="/login" replace />} />
+    </>
   )
 );

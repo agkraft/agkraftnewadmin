@@ -11,6 +11,7 @@ import { FaPhotoFilm } from "react-icons/fa6";
 import { IoSettingsOutline } from "react-icons/io5";
 import { LuImages } from "react-icons/lu";
 import { BsStar } from "react-icons/bs";
+import { MessageSquare } from "lucide-react";
 
 type MenuItem = {
   name: string;
@@ -26,15 +27,15 @@ const items: MenuItem[] = [
     icon: <House />,
     children: [],
   },
+  // {
+  //   name: "Form",
+  //   path: "/form",
+  //   icon: <FaWpforms />,
+  //   children: [],
+  // },
   {
-    name: "Form",
-    path: "/form",
-    icon: <FaWpforms />,
-    children: [],
-  },
-  {
-    name: "Venues",
-    path: "/venues",
+    name: "Projects",
+    path: "/projects",
     icon: <FaHotel />,
     children: [],
   },
@@ -45,8 +46,8 @@ const items: MenuItem[] = [
     children: [],
   },
   {
-    name: "Gallary",
-    path: "/gallary",
+    name: "Teams",
+    path: "/teams",
     icon: <FaPhotoFilm />,
     children: [],
   },
@@ -58,15 +59,15 @@ const items: MenuItem[] = [
     children: [],
   },
   {
-    name: "HomeHeroSection",
-    path: "/herosection",
-    icon: <LuImages />,
-    children: [],
-  },
-  {
     name: "Review",
     path: "/rate-review",
     icon: <BsStar />,
+    children: [],
+  },
+  {
+    name: "Contact Us",
+    path: "/contact",
+    icon: <MessageSquare />,
     children: [],
   },
 ];

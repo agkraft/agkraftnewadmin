@@ -16,28 +16,36 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
-const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 73 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
+interface BarChartProps {
+  data?: Array<{ name: string; value: number }>;
+}
+
+const defaultChartData = [
+  { month: "Pending", desktop: 45 },
+  { month: "In Progress", desktop: 32 },
+  { month: "Resolved", desktop: 78 },
+  { month: "Closed", desktop: 23 },
+  { month: "Follow-up", desktop: 15 },
+  { month: "Cancelled", desktop: 8 },
 ]
 
 const chartConfig = {
   desktop: {
-    label: "Desktop",
+    label: "Contacts",
     color: "hsl(var(--chart-1))",
   },
 } satisfies ChartConfig
 
-export function BarChartComponent() {
+export function BarChartComponent({ data }: BarChartProps = {}) {
+  const chartData = data?.map(item => ({
+    month: item.name,
+    desktop: item.value
+  })) || defaultChartData;
   return (
     <Card>
       <CardHeader>
-        <CardTitle>$856,+10.6%</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>Contact Status Overview</CardTitle>
+        <CardDescription>Current contact distribution by status</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -60,10 +68,10 @@ export function BarChartComponent() {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+          Contact management overview <TrendingUp className="h-4 w-4" />
         </div>
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+          Real-time contact status data
         </div>
       </CardFooter>
     </Card>
