@@ -10,8 +10,8 @@ import { FaHotel } from "react-icons/fa6";
 import { FaPhotoFilm } from "react-icons/fa6";
 import { IoSettingsOutline } from "react-icons/io5";
 import { LuImages } from "react-icons/lu";
-import { BsStar } from "react-icons/bs";
-import { MessageSquare } from "lucide-react";
+
+import { MessageSquare, HelpCircle, Users, Briefcase } from "lucide-react";
 
 type MenuItem = {
   name: string;
@@ -59,9 +59,9 @@ const items: MenuItem[] = [
     children: [],
   },
   {
-    name: "Review",
-    path: "/rate-review",
-    icon: <BsStar />,
+    name: "FAQs",
+    path: "/faqs",
+    icon: <HelpCircle />,
     children: [],
   },
   {
@@ -70,6 +70,31 @@ const items: MenuItem[] = [
     icon: <MessageSquare />,
     children: [],
   },
+  {
+    name: "Post Comments",
+    path: "/post-comments",
+    icon: <MessageSquare />,
+    children: [],
+  },
+  {
+    name: "Careers",
+    path: "/careers",
+    icon: <Users />,
+    children: [],
+  },
+  {
+    name: "Job Profiles",
+    path: "/job-profiles",
+    icon: <Briefcase />,
+    children: [],
+  },
+  {
+    name: "API Test",
+    path: "/api-test",
+    icon: <MessageSquare />,
+    children: [],
+  },
+
 ];
 
 const DashboardPage = () => {

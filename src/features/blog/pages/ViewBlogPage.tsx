@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Edit, Calendar, Eye, Tag } from 'lucide-react';
 import { Loader } from '@/components/globalfiles/loader';
 import { BlogType } from '../type/blogType';
+import PublicBlogComments from '../components/PublicBlogComments';
 import '../components/blog-content.css';
 
 const ViewBlogPage: React.FC = () => {
@@ -186,6 +187,22 @@ const ViewBlogPage: React.FC = () => {
                 overflowWrap: 'break-word'
               }}
               dangerouslySetInnerHTML={{ __html: blog.description }}
+            />
+          </CardContent>
+        </Card>
+
+        {/* Blog Comments Section */}
+        <Card>
+          <CardContent className="pt-6">
+            <PublicBlogComments
+              blogId={(() => {
+                // Handle both string and number IDs
+                if (blog.id) return typeof blog.id === 'number' ? blog.id : parseInt(blog.id);
+                if (blog._id) return parseInt(blog._id);
+                return 0;
+              })()}
+              showCommentForm={true}
+              maxCommentsToShow={5}
             />
           </CardContent>
         </Card>

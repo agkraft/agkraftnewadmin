@@ -10,6 +10,11 @@ import HomeHeroRoutes from "@/features/homeherosection";
 import RateReviewRoutes from "@/features/RaviewRate";
 import TeamRoutes from "@/features/teams";
 import ContactRoutes from "@/features/contact/routes";
+import FAQRoutes from "@/features/faqs/routes";
+import JobProfileRoutes from "@/features/jobProfiles/routes";
+import CareerRoutes from "@/features/careers/routes";
+import PostCommentRoutes from "@/features/postComments/routes";
+import ApiTestPage from "@/features/test/ApiTestPage";
 import { LoginPage } from "@/features/auth/pages/LoginPage";
 import { PrivateRoute, PublicRoute } from "@/components/auth";
 
@@ -48,6 +53,11 @@ export const router = createBrowserRouter(
         <Route path="/herosection/*" element={<HomeHeroRoutes />} />
         <Route path="/rate-review/*" element={<RateReviewRoutes />} />
         <Route path="/contact/*" element={<ContactRoutes />} />
+        <Route path="/faqs/*" element={<FAQRoutes />} />
+        <Route path="/job-profiles/*" element={<JobProfileRoutes />} />
+        <Route path="/careers/*" element={<CareerRoutes />} />
+        <Route path="/post-comments/*" element={<PostCommentRoutes />} />
+        <Route path="/api-test" element={<ApiTestPage />} />
       </Route>
 
       {/* Catch all route - redirect to login if not authenticated, dashboard if authenticated */}

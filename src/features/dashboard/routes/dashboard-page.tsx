@@ -14,6 +14,10 @@ import { getAllServices } from "@/features/servicesfolder/api/serviceApi";
 import { getAllTeams } from "@/features/teams/components/api/api";
 import { getAllBlogs } from "@/features/blog/components/api/api";
 import { getAllContacts, getContactStatistics } from "@/features/contact/components/api/api";
+import { getFAQStatistics } from "@/features/faqs/api/faqApi";
+import { getJobStatistics } from "@/features/jobProfiles/api/jobApi";
+import { getCareerStatistics } from "@/features/careers/api/careerApi";
+import { getCommentStatistics } from "@/features/postComments/api/commentApi";
 
 // Dashboard Statistics Interface
 interface DashboardStats {
@@ -25,6 +29,14 @@ interface DashboardStats {
   activeProjects: number;
   featuredProjects: number;
   pendingContacts: number;
+  totalFAQs: number;
+  activeFAQs: number;
+  totalJobs: number;
+  activeJobs: number;
+  totalCareerApplications: number;
+  newCareerApplications: number;
+  totalComments: number;
+  pendingComments: number;
 }
 
 const DashboardPage: React.FC = () => {
@@ -37,6 +49,14 @@ const DashboardPage: React.FC = () => {
     activeProjects: 0,
     featuredProjects: 0,
     pendingContacts: 0,
+    totalFAQs: 0,
+    activeFAQs: 0,
+    totalJobs: 0,
+    activeJobs: 0,
+    totalCareerApplications: 0,
+    newCareerApplications: 0,
+    totalComments: 0,
+    pendingComments: 0,
   });
   const [loading, setLoading] = useState(true);
   const [projectCategories, setProjectCategories] = useState<any[]>([]);
@@ -56,7 +76,11 @@ const DashboardPage: React.FC = () => {
           teamsResponse,
           blogsResponse,
           contactsResponse,
-          contactStatsResponse
+          contactStatsResponse,
+          faqStatsResponse,
+          jobStatsResponse,
+          careerStatsResponse,
+          commentStatsResponse
         ] = await Promise.all([
           getAllProjects({ page: 1, limit: 10 }),
           getProjectStatistics(),
@@ -64,7 +88,11 @@ const DashboardPage: React.FC = () => {
           getAllTeams({ page: 1, pageSize: 10 }),
           getAllBlogs({ page: 1, pageSize: 10 }),
           getAllContacts({ page: 1, limit: 10 }),
-          getContactStatistics()
+          getContactStatistics(),
+          getFAQStatistics(),
+          getJobStatistics(),
+          getCareerStatistics(),
+          getCommentStatistics()
         ]);
 
         // Process project data
@@ -118,6 +146,12 @@ const DashboardPage: React.FC = () => {
         console.log('Team count from array:', teamCount);
         console.log('Final calculated team count:', finalTeamCount);
 
+        // Extract new API statistics
+        const faqStats = faqStatsResponse.status ? faqStatsResponse.data : null;
+        const jobStats = jobStatsResponse.status ? jobStatsResponse.data : null;
+        const careerStats = careerStatsResponse.status ? careerStatsResponse.data : null;
+        const commentStats = commentStatsResponse.status ? commentStatsResponse.data : null;
+
         setStats({
           totalProjects: (projectStats as any)?.totalProjects || projectData.length,
           totalServices: servicesData.length,
@@ -127,6 +161,14 @@ const DashboardPage: React.FC = () => {
           activeProjects: (projectStats as any)?.activeProjects || 0,
           featuredProjects: (projectStats as any)?.featuredProjects || 0,
           pendingContacts: (contactStatsData as any)?.statusStats?.find((s: any) => s._id === 'pending')?.count || 0,
+          totalFAQs: faqStats?.totalFAQs || 0,
+          activeFAQs: faqStats?.activeFAQs || 0,
+          totalJobs: jobStats?.totalJobs || 0,
+          activeJobs: jobStats?.activeJobs || 0,
+          totalCareerApplications: careerStats?.totalApplications || 0,
+          newCareerApplications: careerStats?.newApplications || 0,
+          totalComments: commentStats?.totalComments || 0,
+          pendingComments: commentStats?.pendingComments || 0,
         });
 
         // Set chart data
